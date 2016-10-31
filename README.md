@@ -3,5 +3,7 @@ Open terminal and
 
 ```
 composer install
+npm install
+bower install
 ```
 
