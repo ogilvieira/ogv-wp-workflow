@@ -70,6 +70,15 @@ module.exports = function(grunt) {
         }]
       }
     },
+    copy: {
+      main: { 
+        expand: true,
+        cwd: 'src/',
+        src: ['**', '!assets/css/**/*', '!assets/js/**/*', '!assets/img/**/*'],
+        dest: themepath,
+        filter: 'isFile'
+      }
+    },
     watch: {
       options: {
         livereload: true,
@@ -77,6 +86,10 @@ module.exports = function(grunt) {
       sass: {
         files: 'src/assets/sass/**/*.scss',
         tasks: ['sass', 'cssmin'],
+      },
+      copy: {
+        files: ['src/**/*', '!src/assets/css/**/*', '!src/assets/js/**/*', '!src/assets/img/**/*'],
+        tasks: ['copy']
       },
       imagemin: {
         files: 'src/assets/img/**/*.{png,jpg,gif}',
@@ -101,6 +114,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('default', ['sass', 'cssmin', 'uglify', 'imagemin']);
+  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('build', ['sass', 'cssmin', 'uglify', 'imagemin', 'copy']);
+
 };

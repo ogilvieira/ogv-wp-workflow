@@ -17,7 +17,7 @@
 <div class="container">
 	<div class="col col-ls-12">
 	<header class="page-header">
-		<h1 class="page-title">Custom page</h1>
+		<h1 class="page-title">Custom  page</h1>
 	</header>
 	<!-- .page-header -->
 </div>
