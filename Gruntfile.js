@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       },
       build: {
         src: project_files.javascript,
-        dest: themepath+'assets/js/bundle.js'
+        dest: themepath+'assets/js/app.min.js'
       },
     },
     cssmin : {
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: project_files.stylesheet,
-        dest: themepath+'assets/css/bundle.css'
+        dest: themepath+'assets/css/app.min.css'
       }
     },
     sass : {
@@ -70,11 +70,14 @@ module.exports = function(grunt) {
         }]
       }
     },
+    clean: {
+      build: [themepath]
+    },
     copy: {
       main: { 
         expand: true,
         cwd: 'src/',
-        src: ['**', '!assets/css/**/*', '!assets/js/**/*', '!assets/img/**/*'],
+        src: ['**', '!assets/css/**/*', '!assets/sass/**/*', '!assets/js/**/*', '!assets/img/**/*'],
         dest: themepath,
         filter: 'isFile'
       }
@@ -102,7 +105,7 @@ module.exports = function(grunt) {
       livereload: {
         files: [
           themepath+'**/*.php',
-          themepath+'assets/css/bundle.css',
+          themepath+'assets/css/app.min.css',
           themepath+'assets/img/**/*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -115,8 +118,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('default', ['watch']);
-  grunt.registerTask('build', ['sass', 'cssmin', 'uglify', 'imagemin', 'copy']);
+  grunt.registerTask('build', ['clean','sass', 'cssmin', 'uglify', 'imagemin', 'copy']);
 
 };
