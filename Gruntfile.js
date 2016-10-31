@@ -1,18 +1,19 @@
 var mozjpeg = require('imagemin-mozjpeg');
+var themepath = 'public/wp-content/themes/mytheme/';
 
 module.exports = function(grunt) {
   var project_files = {
       javascript: [
-        './bower_components/jquery/dist/jquery.js',
-        './src/assets/js/modules/**/*.js',
-        './src/assets/js/page/**/*.js',
-        './src/assets/js/app.js',
+        'bower_components/jquery/dist/jquery.js',
+        'src/assets/js/modules/**/*.js',
+        'src/assets/js/page/**/*.js',
+        'src/assets/js/app.js',
       ],
       stylesheet: [
-        './bower_components/bootstrap/dist/css/bootstrap.css',
-        './bower_components/bootstrap/dist/css/bootstrap-theme.css',
-        './bower_components/font-awesome/css/font-awesome.css',
-        './src/assets/css/**/*.css',
+        'bower_components/bootstrap/dist/css/bootstrap.css',
+        'bower_components/bootstrap/dist/css/bootstrap-theme.css',
+        'bower_components/font-awesome/css/font-awesome.css',
+        'src/assets/css/**/*.css',
       ],
   };
   // Project configuration.
@@ -28,7 +29,7 @@ module.exports = function(grunt) {
       },
       build: {
         src: project_files.javascript,
-        dest: './assets/js/bundle.js'
+        dest: themepath+'assets/js/bundle.js'
       },
     },
     cssmin : {
@@ -37,7 +38,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: project_files.stylesheet,
-        dest: './assets/css/bundle.css'
+        dest: themepath+'assets/css/bundle.css'
       }
     },
     sass : {
@@ -52,9 +53,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true, // 2
-          cwd: './src/assets/sass/',
+          cwd: 'src/assets/sass/',
           src: [ 'app.scss' ],
-          dest: './src/assets/css/',
+          dest: 'src/assets/css/',
           ext: '.css'
         }]
       }
@@ -63,9 +64,9 @@ module.exports = function(grunt) {
       dynamic: {
         files: [{
           expand: true,
-          cwd: './src/assets/img/',
+          cwd: 'src/assets/img/',
           src: ['**/*.{png,jpg,gif}'],
-          dest: './assets/img/'
+          dest: themepath+'assets/img/'
         }]
       }
     },
@@ -74,11 +75,11 @@ module.exports = function(grunt) {
         livereload: true,
       },
       sass: {
-        files: './src/assets/sass/**/*.scss',
+        files: 'src/assets/sass/**/*.scss',
         tasks: ['sass', 'cssmin'],
       },
       imagemin: {
-        files: './src/assets/img/**/*.{png,jpg,gif}',
+        files: 'src/assets/img/**/*.{png,jpg,gif}',
         tasks: ['imagemin'],
       },
       javascript: {
@@ -86,7 +87,11 @@ module.exports = function(grunt) {
         tasks: ['uglify']
       },
       livereload: {
-        files: ['./**/*.php', 'assets/css/bundle.css','assets/img/**/*.{png,jpg,jpeg,gif,webp,svg}']
+        files: [
+          themepath+'**/*.php',
+          themepath+'assets/css/bundle.css',
+          themepath+'assets/img/**/*.{png,jpg,jpeg,gif,webp,svg}'
+        ]
       }
     }
   });
