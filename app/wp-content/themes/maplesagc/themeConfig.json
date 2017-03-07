@@ -1,0 +1,30 @@
+{
+  "name": "Maples AGC",
+  "description": "",
+  "author": "",
+  "author_url": "",
+  "version": "1.0.0",
+  "scripts" : [
+    "./bower_components/jquery/dist/jquery.js",
+    "./bower_components/bootstrap/dist/js/bootstrap.js",
+    "./bower_components/owl.carousel/dist/owl.carousel.js",
+    "./src/assets/js/lib/**/*.js",
+    "./src/assets/js/modules/**/*.js",
+    "./src/assets/js/page/**/*.js",
+    "./src/assets/js/app.js"
+  ],
+  "styles" : [
+    "./bower_components/bootstrap/dist/css/bootstrap.css",
+    "./bower_components/owl.carousel/dist/assets/owl.carousel.css",
+    "./bower_components/owl.carousel/dist/assets/owl.theme.default.css",
+    "./bower_components/font-awesome/css/font-awesome.css",
+    "./src/assets/css/**/*.css"
+  ],
+  "fonts" : [
+    "./src/assets/fonts/**/*.{ttf,woff,eof,svg}",
+    "./bower_components/font-awesome/fonts/**/*"
+  ],
+  "images" : [
+    "./src/img/*.{jpeg,jpg,svg,png}"
+  ]
+}
